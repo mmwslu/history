@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>빛과 그림자: 산업혁명 시대 사람들과 대화하기</title>
+<style>
+:root{--bg:#eceeea;--panel:#fafaf7;--ink:#1e2429;--mute:#5d666d;--line:#cfd3cf;--bubble:#e3e6e1;--ubub:#1e2429;--uink:#fafaf7;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15191c;--panel:#1f2529;--ink:#e8ebe8;--mute:#98a2a8;--line:#333c42;--bubble:#2a3238;--ubub:#e8ebe8;--uink:#15191c}}
+:root[data-theme="dark"]{--bg:#15191c;--panel:#1f2529;--ink:#e8ebe8;--mute:#98a2a8;--line:#333c42;--bubble:#2a3238;--ubub:#e8ebe8;--uink:#15191c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 "Noto Sans KR",system-ui,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:20px 16px 40px}
+h1{font:800 clamp(24px,6vw,34px)/1.3 "Noto Serif KR",serif;margin:8px 0 6px;letter-spacing:-.02em}
+.sub{color:var(--mute);margin:0 0 18px;font-size:15px}
+.split{height:6px;border-radius:3px;background:linear-gradient(90deg,#e0b84c 0 50%,#2b3339 50% 100%);margin-bottom:16px}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}@media (max-width:560px){.tabs{grid-template-columns:repeat(2,1fr)}}
+.tab{background:var(--panel);border:2px solid var(--line);border-radius:10px;padding:10px 6px;cursor:pointer;color:var(--ink);font:inherit;text-align:center;line-height:1.35}
+.tab b{display:block;font:700 15px "Noto Serif KR",serif}
+.tab span{font-size:12px;color:var(--mute)}
+.tab[aria-pressed="true"]{border-color:var(--ac);box-shadow:inset 0 -4px 0 var(--ac)}
+.tab:focus-visible,button:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #3b82f6;outline-offset:2px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.head{padding:12px 16px;border-left:6px solid var(--ac);border-bottom:1px solid var(--line)}
+.head h2{margin:0;font:700 18px "Noto Serif KR",serif}
+.head p{margin:2px 0 0;font-size:14px;color:var(--mute)}
+details{border-bottom:1px solid var(--line);padding:8px 16px;font-size:14px}
+summary{cursor:pointer;font-weight:700}
+details p{margin:6px 0 2px;color:var(--mute)}
+#log{height:min(52vh,440px);overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:85%;padding:10px 14px;border-radius:14px;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere}
+.m.a{background:var(--bubble);border-top-left-radius:4px;align-self:flex-start;border-left:4px solid var(--ac)}
+.m.u{background:var(--ubub);color:var(--uink);border-top-right-radius:4px;align-self:flex-end}
+.m.n{align-self:center;font-size:13px;color:var(--mute);background:none;text-align:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 10px}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer}
+.chip:hover{border-color:var(--ac)}
+.in{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--line)}
+textarea{flex:1;resize:none;height:48px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);padding:10px 12px;font:inherit}
+.send{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:0 18px;font:700 15px inherit;font-family:inherit;cursor:pointer}
+.send:disabled{opacity:.5;cursor:default}
+.think{margin-top:22px;padding:16px;border-radius:12px;background:var(--panel);border:1px solid var(--line)}
+.think h3{margin:0 0 6px;font:700 17px "Noto Serif KR",serif}
+.think ol{margin:0 0 10px;padding-left:20px;color:var(--mute);font-size:15px}
+.think textarea{width:100%;height:96px}
+.idbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 16px;margin-bottom:12px}
+.idbar label{font-weight:700}
+.idbar input{width:150px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);padding:9px 12px;font:inherit}
+.idbar .send{padding:9px 16px}
+#st{font-size:13px;color:var(--mute);flex-basis:100%}
+#tpl details{padding:8px 0;border-bottom:1px solid var(--line)}
+#tpl .t{margin:6px 0;font-size:14px;white-space:pre-wrap}
+#tpl .t b{color:var(--mute)}
+#art{border-bottom:1px solid var(--line);line-height:0;background:#222}#art svg{width:100%;height:auto;max-height:190px;display:block}
+.sw{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.sw[hidden]{display:none}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#1e2429;color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;z-index:9;max-width:90%;text-align:center}#toast[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>빛과 그림자: 산업혁명 시대 사람들과 대화하기</h1>
+<p class="sub">19세기 영국, 증기기관이 세상을 바꾸던 때. 네 사람에게 같은 질문을 해 보고 누구의 이야기가 어떻게 다른지 비교해 보세요.</p>
+<div class="split" aria-hidden="true"></div>
+<div class="card idbar" id="idbar"><label for="sid">학번</label><input id="sid" inputmode="numeric" maxlength="12" placeholder="예: 20315" autocomplete="off"><button class="send" id="sidgo" style="background:var(--ink);color:var(--bg)">저장하고 시작</button><span id="st" role="status">학번을 입력하면 이 기기에 자동 저장돼요. 끝나면 아래에서 파일로 저장해 선생님께 내세요.</span></div>
+<div class="tabs" id="tabs"></div>
+<div class="card">
+  <div class="head"><h2 id="cn"></h2><p id="cr"></p></div>
+  <div id="art"></div>
+  <details><summary>역사 메모 (대화 전에 읽어 보세요)</summary><p id="ch"></p></details>
+  <div id="log" aria-live="polite"><div class="m n">불러오는 중이에요... 이 글이 계속 보이면 크롬이나 사파리 같은 브라우저에서 주소를 직접 열어 주세요. (카카오톡·메일·드라이브 미리보기에서는 작동하지 않아요.)</div></div>
+  <div class="chips" id="chips"></div>
+  <div class="in"><textarea id="q" placeholder="궁금한 것을 물어보세요" aria-label="질문 입력"></textarea><button class="send" id="go">보내기</button></div>
+</div>
+<div class="think">
+  <h3>대화를 마치고 생각해 보기</h3>
+  <ol><li>네 사람은 산업혁명을 각각 어떻게 느꼈나요?</li><li>누구의 이야기가 가장 마음에 남았나요? 그 이유는요?</li><li>모두가 함께 잘 사는 세상이 되려면 어떤 일이 필요했을까요?</li></ol>
+  <textarea id="refl" placeholder="내 생각을 적어 보세요" aria-label="내 생각"></textarea>
+<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="send" id="dl" style="padding:10px 16px">내 기록 파일로 저장하기</button><button class="send" id="cp" style="padding:10px 16px;background:var(--ink);color:var(--bg)">내용 복사하기</button></div>
+</div>
+<noscript><p style="padding:12px;background:#fde68a;color:#222;text-align:center">자바스크립트가 꺼져 있어서 이 페이지를 쓸 수 없어요. 브라우저 설정에서 켜 주세요.</p></noscript>
+<div id="toast" role="status" hidden></div>
+<script>
+window.onerror=function(m,u,l){var g=document.getElementById("log");if(g)g.textContent="오류가 났어요: "+m+" (줄 "+l+"). 이 글을 선생님께 보여 주세요."};
+const C={
+tom:{n:"톰",r:"맨체스터 방직공장에서 일하는 13세 소년",ac:"#b9852a",tab:"공장 아이",
+memo:"1800년대 초 영국 방직공장에서는 어린이들이 하루 12~14시간씩 일했어요. 작은 손으로 좁은 기계 틈에서 실을 잇거나 먼지를 치우다 다치는 일이 잦았지요. 1833년 공장법으로 어린이 노동 시간을 제한하기 시작했어요.",
+hi:"...안녕. 나는 톰이야. 방금 일 끝나고 왔는데 눈이 침침해서 네 얼굴이 잘 안 보여. 뭐가 궁금해?",
+chips:["하루가 어떻게 흘러가?","일하다 무섭거나 위험한 적 있어?","소원이 뭐야?"],
+p:"너는 19세기 영국 맨체스터의 방직공장에서 일하는 13세 소년 '톰'이야. 하루 14시간씩 일해서 항상 눈이 침침하고 온몸에 먼지가 가득해. 말투는 지치고 힘이 없지만 또래처럼 솔직하고 순수해. 꼭 이야기할 것: 해뜨기 전에 출근해 밤늦게까지 기계 곁에서 일한다는 것, 기계가 시끄럽고 위험해서 다치는 친구들이 많다는 것, 학교에 가고 싶고 배부르게 먹고 푹 자는 게 소원이라는 것. 질문에 맞는 이야기를 골라서 답해."},
+clara:{n:"클라라",r:"맨체스터 면방직 공장주의 아내",ac:"#3f7f8c",tab:"공장주의 아내",
+memo:"증기기관과 방직기 덕분에 옷감이 아주 싸지고 영국은 '세계의 공장'이 되었어요. 부유한 공장주와 상인은 새로운 중산층(부르주아)으로 성장했지요. 하지만 공장 도시는 매연과 좁은 노동자 집 때문에 병이 잘 퍼졌어요.",
+hi:"어머, 반가워요. 저는 클라라예요. 이 맨체스터가 얼마나 멋지게 발전하고 있는지 궁금하시다면 뭐든 물어보세요.",
+chips:["공장이 생겨서 뭐가 좋아졌어요?","연기 때문에 힘들지 않아요?","아이들이 일하는 건 괜찮은가요?"],
+p:"너는 19세기 영국 맨체스터에서 면방직 공장을 크게 운영하는 부유한 자본가의 아내 '클라라'야. 자신감 넘치고 당당하며 기술 발전이 세상을 이롭게 했다는 자부심이 커. 말투는 우아하지만 은근히 자랑하는 듯해. 꼭 믿는 것: 증기기관과 공장 덕분에 사회가 풍요로워지고 좋은 물건을 싸게 살 수 있게 되었다, 열심히 일하면 누구나 성공할 수 있는 기회의 시대다. 노동자의 힘든 삶이나 스모그 문제는 진심으로 '모두가 부자가 되기 위해 치르는 약간의 성장통'이라고 대수롭지 않게 여겨. 다만 학생에게는 친절하고 교양 있게 대답해."},
+inspector:{n:"해리슨",r:"공장주 밑에서 일꾼들을 감시하는 50대 공장 감독관",ac:"#4a5f9c",tab:"공장 감독관",
+memo:"당시 공장 감독관(현장 감독)은 공장주를 대신해 일꾼들이 쉬지 않고 일하게 다그쳤고, 일이 느리면 벌금을 물리거나 혼내기도 했어요. 1833년 공장법이 어린이 노동 시간을 제한하고 이를 조사할 '공장 조사관'을 두었지만 처음에는 전국에 4명뿐이었어요. 공장 안의 감독관과 나라에서 온 조사관은 서로 다른 사람이에요.",
+hi:"거기, 학생. 여기는 구경하는 곳이 아니야. 나는 해리슨, 이 작업장 감독이다. 짧게 물어. 기계는 멈추면 안 되니까.",
+chips:["하루 종일 뭘 지켜보세요?","아이들이 지쳐 보이면 어떻게 해요?","공장법이 생겼다는데 알고 있나요?"],
+p:"너는 1830년대 영국 맨체스터 면방직 공장에서 일꾼들을 감시하는 50대 공장 감독관 '해리슨'이야. 검은 코트와 모자 차림으로 손에 가죽 채찍을 들고 공장의 높은 곳에서 아래를 내려다봐. 엄격하고 냉철하며 고압적이고, 짧고 딱딱한 명령조로 말해. 너는 공장주에게 고용된 사람이고, 기계를 멈추지 않고 일을 빨리 끝내는 것이 네 임무이며 규율이 곧 질서라고 믿어. 아이들이 지쳐 보이는 것은 게으름이라고 여기고, 다그치거나 벌금을 매기거나 혼내는 것이 자기 일이라고 말해. 채찍은 위엄을 세우는 도구라고 하되, 때리는 장면을 자세히 묘사하지는 마. 1833년 공장법과 조사관이 있다는 것은 알지만 '종이 위의 규칙일 뿐, 조사관은 가끔 올 뿐'이라고 대수롭지 않게 말해. 학생에게 예의는 지키되 퉁명스럽게 대해."},
+robert:{n:"로버트",r:"러다이트 운동에 참여한 숙련 직조공",ac:"#9a3b2e",tab:"기계를 부순 직조공",
+memo:"1811~1816년 노팅엄셔·요크셔·랭커셔 등에서 일어난 러다이트 운동은 기계가 들어오며 임금이 깎이고 일자리가 줄자 숙련공들이 밤에 공장의 기계를 부순 사건이에요. 정부는 기계 파괴를 사형까지 가능한 중죄로 다뤘어요.",
+hi:"...왔군. 나는 로버트다. 평생 베틀을 짜며 식구를 먹여 살렸지. 궁금한 게 있으면 묻게. 대신 거짓 없이 답하겠네.",
+chips:["왜 기계를 부수나요?","기계가 다 나쁜 건가요?","가족은 어떻게 지내요?"],
+p:"너는 1811년 무렵 영국에서 평생 수공업 직물 짜기로 가족을 먹여 살린 숙련공 '로버트'야. 러다이트 운동(기계 파괴 운동)에 참여하고 있어. 거칠고 분노에 차 있지만 가족을 지키고 싶은 간절함이 있어. 말투는 단호하고 투박하며 무거운 어조야. 꼭 말할 것: 피도 눈물도 없는 방직기가 들어온 뒤 평생 익힌 기술이 쓸모없어지고 임금이 깎여 가족이 굶을 위기라는 것, 사람의 일자리와 삶을 지키고 권리를 되찾으려고 기계를 부순다는 것. 다만 기계 자체보다 공장주가 임금을 깎는 방식이 문제라는 마음도 있어. 폭력을 부추기는 말은 하지 말고 절박한 사정을 설명하는 데 집중해."}
+};
+const ART={tom:`<svg viewBox="0 0 400 160" role="img" aria-label="어둡고 먼지 가득한 방직공장 기계 사이에 앉아 지치고 겁먹은 표정으로 있는 13세 소년 톰"><rect width="400" height="160" fill="#3a332d"/><polygon points="110,6 180,6 215,142 95,142" fill="#f3e6c4" opacity=".08"/><rect x="10" y="44" width="80" height="98" rx="6" fill="#4f463d"/><g fill="#e3d9c3"><rect x="16" y="54" width="68" height="10" rx="5"/><rect x="16" y="76" width="68" height="10" rx="5"/><rect x="16" y="98" width="68" height="10" rx="5"/></g><rect x="250" y="30" width="140" height="112" rx="6" fill="#4f463d"/><circle cx="320" cy="84" r="40" fill="#5f554a"/><circle cx="320" cy="84" r="24" fill="#3b342d"/><path d="M320 44v80M280 84h80" stroke="#75695b" stroke-width="6"/><rect x="266" y="36" width="90" height="14" rx="7" fill="#e3d9c3"/><rect y="142" width="400" height="18" fill="#221d19"/><rect x="130" y="110" width="40" height="32" rx="12" fill="#6b5a48"/><rect x="144" y="110" width="12" height="32" fill="#d8cbb5"/><ellipse cx="150" cy="138" rx="22" ry="9" fill="#5d5147"/><circle cx="136" cy="126" r="5" fill="#f0cfa8"/><circle cx="164" cy="126" r="5" fill="#f0cfa8"/><circle cx="150" cy="84" r="26" fill="#f0cfa8"/><path d="M124 80q-2-24 26-24t26 24q-4-10-14-10l-6 8-6-8q-10 0-14 8z" fill="#3d2b1f"/><g fill="#7a6a58" opacity=".45"><ellipse cx="164" cy="96" rx="5" ry="3"/><ellipse cx="136" cy="74" rx="4" ry="2.5"/></g><g fill="#2a1e18"><ellipse cx="141" cy="86" rx="4.2" ry="5.2"/><ellipse cx="159" cy="86" rx="4.2" ry="5.2"/></g><g fill="#fff"><circle cx="139.5" cy="84" r="1.5"/><circle cx="157.5" cy="84" r="1.5"/></g><g fill="#f08a8a" opacity=".5"><ellipse cx="134" cy="94" rx="5" ry="3"/><ellipse cx="166" cy="94" rx="5" ry="3"/></g><path d="M135 77l9-4M165 77l-9-4" stroke="#2a1e18" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M145 99q5-5 10 0" stroke="#7a3a2e" stroke-width="2" stroke-linecap="round" fill="none"/><g fill="#d8cdb8" opacity=".5"><circle cx="60" cy="30" r="2"/><circle cx="205" cy="70" r="2"/><circle cx="225" cy="110" r="2"/><circle cx="40" cy="126" r="2"/></g></svg>`,robert:`<svg viewBox="0 0 400 160" role="img" aria-label="망치와 베틀 북을 들고 화난 표정으로 서 있는 40대 숙련공 로버트, 뒤에는 베틀과 공장이 보인다"><rect width="400" height="160" fill="#45312b"/><rect x="18" y="30" width="86" height="112" fill="none" stroke="#8a6a48" stroke-width="8"/><path d="M34 36v100M50 36v100M66 36v100M82 36v100" stroke="#b39a74" stroke-width="1.5"/><rect x="22" y="112" width="78" height="24" fill="#d8c7a4"/><rect x="300" y="20" width="72" height="72" rx="4" fill="#c1af92"/><rect x="326" y="52" width="12" height="40" fill="#6b5f55"/><rect x="308" y="70" width="30" height="22" fill="#8a7d70"/><g fill="#8a7d70" opacity=".7"><circle cx="334" cy="44" r="7"/><circle cx="344" cy="34" r="6"/></g><rect y="142" width="400" height="18" fill="#251814"/><path d="M158 146q0-44 32-46q32 2 32 46z" fill="#7a5a3c"/><path d="M190 100l-12 22 12 24 12-24z" fill="#5f4530"/><circle cx="190" cy="126" r="1.8" fill="#d8b46a"/><circle cx="190" cy="136" r="1.8" fill="#d8b46a"/><circle cx="190" cy="72" r="26" fill="#e3b48f"/><path d="M164 66q0-26 26-26t26 26z" fill="#4a3f36"/><ellipse cx="190" cy="66" rx="30" ry="6" fill="#3a3129"/><g fill="#2a1e18"><ellipse cx="181" cy="76" rx="4.2" ry="5.2"/><ellipse cx="199" cy="76" rx="4.2" ry="5.2"/></g><g fill="#fff"><circle cx="179.5" cy="74" r="1.5"/><circle cx="197.5" cy="74" r="1.5"/></g><g fill="#f08a8a" opacity=".5"><ellipse cx="174" cy="84" rx="5" ry="3"/><ellipse cx="206" cy="84" rx="5" ry="3"/></g><path d="M175 63l10 5M205 63l-10 5" stroke="#2a1e18" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M183 89q7-6 14 0" stroke="#7a3a2e" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M212 50h8M212 54h8M214 47v10M218 47v10" stroke="#d9482f" stroke-width="1.8"/><g transform="rotate(-22 145 112)"><rect x="142" y="86" width="6" height="40" rx="3" fill="#8b6b45"/><rect x="130" y="82" width="26" height="14" rx="3" fill="#9a9a9a"/></g><circle cx="146" cy="118" r="6" fill="#e3b48f"/><g transform="rotate(-25 240 112)"><ellipse cx="240" cy="112" rx="20" ry="6.5" fill="#b58a55"/><ellipse cx="240" cy="112" rx="8" ry="2.2" fill="#45312b"/></g><circle cx="226" cy="118" r="6" fill="#e3b48f"/></svg>`,clara:`<svg viewBox="0 0 400 160" role="img" aria-label="장갑을 끼고 양산을 든 채 화려한 드레스와 깃털 모자 차림으로 공장 굴뚝이 보이는 발코니에서 자신 있게 웃는 30대 여성 클라라"><rect width="400" height="160" fill="#e6d9c4"/><g fill="#9a8b7b"><rect x="14" y="66" width="130" height="60"/><rect x="34" y="26" width="14" height="42"/><rect x="88" y="36" width="14" height="32"/><rect x="180" y="80" width="80" height="46"/></g><g fill="#b8ab9b"><circle cx="42" cy="18" r="11"/><circle cx="56" cy="8" r="9"/><circle cx="96" cy="26" r="10"/><circle cx="108" cy="16" r="8"/></g><g fill="#bfae98"><rect x="24" y="76" width="10" height="12"/><rect x="48" y="76" width="10" height="12"/><rect x="72" y="76" width="10" height="12"/><rect x="96" y="76" width="10" height="12"/></g><rect x="0" y="116" width="400" height="5" fill="#4a3b33"/><g fill="#4a3b33"><rect x="20" y="121" width="5" height="21"/><rect x="60" y="121" width="5" height="21"/><rect x="100" y="121" width="5" height="21"/><rect x="140" y="121" width="5" height="21"/><rect x="180" y="121" width="5" height="21"/><rect x="340" y="121" width="5" height="21"/></g><rect y="142" width="400" height="18" fill="#5b4a3e"/><path d="M290 90l22-40" stroke="#7a5a44" stroke-width="3"/><path d="M276 54q34-40 68 0q-11-7-22 0q-12-7-23 0q-11-7-23 0z" fill="#f6ebe0" stroke="#b99a84" stroke-width="2"/><path d="M228 148q8-44 42-46q34 2 42 46z" fill="#d9a6b8"/><path d="M250 106q20 14 40 0" stroke="#fff6ea" stroke-width="5" fill="none"/><path d="M238 148q6-16 32-18" stroke="#c78ea3" stroke-width="3" fill="none"/><path d="M294 106l-2 14" stroke="#d9a6b8" stroke-width="8" stroke-linecap="round"/><circle cx="291" cy="122" r="6" fill="#fff"/><circle cx="270" cy="76" r="26" fill="#f7dcc0"/><path d="M246 74q0-16 24-16t24 16q-10-8-24-8t-24 8z" fill="#6a4630"/><path d="M257 82q4.5-6 9 0M274 82q4.5-6 9 0" stroke="#2a1e18" stroke-width="2" fill="none"/><g fill="#f08a8a" opacity=".5"><ellipse cx="254" cy="88" rx="5" ry="3"/><ellipse cx="286" cy="88" rx="5" ry="3"/></g><path d="M256 70q5-2 9 0M275 66q5-3 9 0" stroke="#2a1e18" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M262 89q8 8 16 0" stroke="#7a3a2e" stroke-width="2" stroke-linecap="round" fill="none"/><ellipse cx="270" cy="58" rx="36" ry="9" fill="#3a2a34"/><path d="M250 58q0-24 20-24t20 24z" fill="#3a2a34"/><rect x="250" y="52" width="40" height="4" fill="#d9a6b8"/><path d="M286 38q24-26 40-8q-20-4-30 14" fill="#fbf6ee" stroke="#d8ccb8" stroke-width="1.5"/></svg>`,inspector:`<svg viewBox="0 0 400 160" role="img" aria-label="공장 높은 곳의 철제 난간 위에서 채찍을 들고 아래의 노동자들을 엄격하게 내려다보는 검은 코트와 모자 차림의 50대 공장 감독관 해리슨"><rect width="400" height="160" fill="#312b26"/><g fill="#b9ab93" opacity=".3"><rect x="24" y="14" width="26" height="46" rx="13"/><rect x="88" y="14" width="26" height="46" rx="13"/><rect x="286" y="14" width="26" height="46" rx="13"/><rect x="350" y="14" width="26" height="46" rx="13"/></g><path d="M0 8h400M0 22h400" stroke="#241f1b" stroke-width="3"/><g fill="#5a4c40"><rect x="56" y="112" width="8" height="12" rx="4"/><rect x="118" y="112" width="8" height="12" rx="4"/><rect x="292" y="112" width="8" height="12" rx="4"/><rect x="336" y="112" width="8" height="12" rx="4"/></g><g fill="#a89680"><circle cx="60" cy="108" r="6"/><circle cx="122" cy="108" r="6"/><circle cx="296" cy="108" r="6"/><circle cx="340" cy="108" r="6"/></g><rect y="128" width="400" height="32" fill="#4a3b2f"/><path d="M0 100h400" stroke="#141210" stroke-width="4"/><g fill="#141210"><rect x="30" y="100" width="4" height="28"/><rect x="90" y="100" width="4" height="28"/><rect x="290" y="100" width="4" height="28"/><rect x="350" y="100" width="4" height="28"/></g><path d="M156 150q0-46 34-48q34 2 34 48z" fill="#15171a"/><path d="M190 102l-14 22 14 26 14-26z" fill="#2c3036"/><path d="M186 106h8v18l-4 4-4-4z" fill="#e9e4da"/><circle cx="190" cy="76" r="26" fill="#e8c9a6"/><g fill="#3a3028"><ellipse cx="166" cy="84" rx="4" ry="8"/><ellipse cx="214" cy="84" rx="4" ry="8"/></g><g fill="#2a1e18"><ellipse cx="181" cy="78" rx="4.2" ry="4"/><ellipse cx="199" cy="78" rx="4.2" ry="4"/></g><g fill="#fff"><circle cx="179.5" cy="76" r="1.5"/><circle cx="197.5" cy="76" r="1.5"/></g><g fill="#f08a8a" opacity=".5"><ellipse cx="174" cy="86" rx="5" ry="3"/><ellipse cx="206" cy="86" rx="5" ry="3"/></g><path d="M175 67l10 3M205 67l-10 3" stroke="#2a1e18" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M184 90h12" stroke="#7a3a2e" stroke-width="2" stroke-linecap="round" fill="none"/><ellipse cx="190" cy="54" rx="34" ry="6" fill="#15171a"/><rect x="170" y="26" width="40" height="28" rx="6" fill="#15171a"/><rect x="170" y="46" width="40" height="5" fill="#8a5a3a"/><path d="M222 122q22 2 36 16t26 18" stroke="#a0703a" stroke-width="3" stroke-linecap="round" fill="none"/><rect x="216" y="116" width="12" height="7" rx="3" fill="#5a3a1e"/><circle cx="222" cy="122" r="6" fill="#e8c9a6"/></svg>`};
+const hist={tom:[],clara:[],inspector:[],robert:[]};let cur="tom",sid="";
+const $=id=>document.getElementById(id),log=$("log");
+const R={
+tom:{i:[
+["하루,일과,시간,몇시,출근,아침,퇴근","해가 뜨기도 전에 일어나서 공장에 가. 밤늦게까지 기계 옆에서 일하니까 집에 오면 그냥 쓰러져 자. 하루가 너무 길어서 눈이 자꾸 침침해져."],
+["위험,다치,무서,기계,시끄","기계가 엄청 시끄럽고 빨리 돌아가서 무서워. 내 친구 하나는 손가락을 다쳐서 일을 못 나오게 됐어. 그래도 쉬면 돈을 못 받으니까 우린 계속 나와야 해."],
+["소원,학교,공부,꿈,글자","학교에 가서 글자를 배우는 게 소원이야. 그리고 배부르게 먹고 푹 자 보고 싶어. 그런 날이 오면 정말 좋겠다."],
+["먹,밥,배고,빵,점심","밥은 딱딱한 빵이랑 멀건 죽이 다야. 늘 배가 조금 고파. 빵이 남는 날엔 부자가 된 기분이야."],
+["가족,엄마,아빠,집,동생","아빠 혼자 벌어서는 살기 힘들어서 나도 일해. 엄마는 동생들을 돌봐. 내가 받는 돈이 우리 집 밥값이야."],
+["감독,혼나,졸","감독 아저씨는 눈을 부릅뜨고 서 있어. 졸면 혼나니까 눈을 크게 뜨려고 애써. 그래서 더 눈이 아파."]],
+f:["음... 잘 모르겠어. 나는 그냥 하루 종일 일하는 아이라서. 내 하루나 기계, 소원에 대해 물어봐 줄래?","어려운 건 잘 몰라. 그래도 우리 집 이야기나 공장 이야기는 해 줄 수 있어."]},
+clara:{i:[
+["좋아,발전,증기,공장,풍요,싸","증기기관 덕분에 옷감이 예전보다 훨씬 싸졌어요. 이제 평범한 사람들도 고운 옷을 살 수 있답니다. 우리 공장이 그런 세상을 만들고 있다고 생각하면 정말 뿌듯해요."],
+["연기,스모그,공기,매연,굴뚝","어머, 그 검은 연기요? 발전에는 약간의 성장통이 따르는 법이에요. 모두가 부자가 되기 위해 치르는 작은 대가일 뿐이죠. 곧 익숙해질 거예요."],
+["아이,아동,어린이,소년,톰","일하는 아이들이 있는 건 알아요. 하지만 일을 일찍 배우는 것도 좋은 경험이 아닐까요? 열심히 하면 그 아이들도 언젠가 기회를 잡을 거예요."],
+["노동자,힘들,임금,월급,가난","일이 힘든 건 어느 시대나 마찬가지랍니다. 지금은 열심히 일하면 누구나 성공할 수 있는 기회의 시대예요. 그 기회를 잡느냐는 각자의 노력에 달렸죠."],
+["성공,기회,부자","이 시대는 기회의 시대예요. 부지런하면 누구든 지금보다 나은 삶을 만들 수 있다고 믿어요. 우리 가족도 그렇게 이 자리까지 왔답니다."],
+["러다이트,기계파괴,부수,로버트","그분들은 발전이 두려운 거예요. 기계 덕분에 새로 생긴 일자리도 많은데 말이죠. 시대가 바뀌면 사람도 함께 바뀌어야 한다고 생각해요."]],
+f:["호호, 재미있는 질문이네요. 저는 공장과 풍요로운 세상 이야기라면 얼마든지 해 드릴 수 있어요.","그건 잘 모르겠지만, 우리 맨체스터가 얼마나 발전하고 있는지는 자신 있게 말할 수 있답니다."]},
+inspector:{i:[
+["일,하루,뭐,지켜,감시","나는 일꾼들이 쉬지 않고 일하는지 지켜본다. 기계는 멈추면 안 되니까. 손이 느린 자는 바로 눈에 띄지."],
+["지친,졸,아이,어린이,힘들","지친 건 게으름이야. 다그치고 벌금을 물리는 게 내 일이지. 그래야 하루 몫이 나오니까."],
+["채찍","채찍은 위엄을 세우는 도구다. 들고만 있어도 다들 정신을 차리지. 자세한 건 말할 필요 없다."],
+["법,공장법,조사관","공장법이 생겼다는 건 알고 있다. 하지만 종이 위의 규칙일 뿐이야. 조사관은 가끔 올 뿐이고, 여기선 공장주의 말이 곧 법이다."],
+["공장주,주인,사장,클라라","나는 공장주에게 고용된 사람이야. 시킨 대로 일이 돌아가게 하는 게 내 임무지. 그 이상은 내 알 바 아니다."],
+["톰,로버트,기계파괴,러다이트","말썽꾼들은 질색이다. 규율이 없으면 공장은 돌아가지 않아. 질서가 곧 밥줄이라는 걸 모르는 자들이지."]],
+f:["짧고 분명하게 물어라. 나는 바쁘다.","그건 내 소관이 아니야. 일과 규율에 대해서라면 대답해 주지."]},
+robert:{i:[
+["왜,부수,파괴,망치","저 기계가 들어온 뒤로 평생 익힌 내 기술이 쓸모없어졌네. 임금은 깎이고 일자리는 사라졌지. 우리 권리를 찾으려면 기계를 부술 수밖에 없었네."],
+["나쁜,기계,모든,다","기계 자체가 미운 건 아니야. 그걸로 우리 임금을 깎고 사람을 내쫓는 방식이 문제지. 우리도 먹고살아야 하지 않겠나."],
+["가족,아내,아이,식구","아내와 아이들이 굶을까 봐 밤마다 잠이 안 오네. 평생 베틀을 짜서 식구를 먹여 살렸는데 이제 빈손이야."],
+["기술,직조,베틀,솜씨","나는 어릴 때부터 베틀로 옷감을 짰네. 손끝으로 실을 느끼며 배운 솜씨가 내 자랑이었지. 그걸 기계 하나가 지워 버렸어."],
+["정부,처벌,잡히,벌,무섭","잡히면 무거운 벌을 받을 수도 있다는 걸 알아. 그래도 가만히 굶고만 있을 수는 없었네. 절박하니까 이러는 걸세."],
+["공장주,클라라,부자","공장주들은 기계로 큰돈을 벌지만 우리 손엔 남는 게 없네. 이건 너무 불공평하지 않나."]],
+f:["...그건 잘 모르겠네. 내 일자리와 가족, 그리고 저 기계 이야기라면 하겠네.","말이 길어지는군. 내 사정을 묻는다면 거짓 없이 답하겠네."]}
+};
+function reply(k,q){const t=q.replace(/\s/g,"");for(const [ks,a] of R[k].i){if(ks.split(",").some(w=>t.includes(w)))return a}const f=R[k].f;return f[Math.floor(hist[k].length/2)%f.length]}
+function add(role,t){const d=document.createElement("div");d.className="m "+role;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
+function show(k){cur=k;const c=C[k];document.documentElement.style.setProperty("--ac",c.ac);
+$("art").innerHTML=ART[k];$("cn").textContent=c.n;$("cr").textContent=c.r;$("ch").textContent=c.memo;log.textContent="";
+add("a",c.hi);hist[k].forEach(m=>add(m.role==="user"?"u":"a",m.content));
+document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===k));
+const ch=$("chips");ch.textContent="";c.chips.forEach(t=>{const b=document.createElement("button");b.className="chip";b.textContent=t;b.onclick=()=>ask(t);ch.appendChild(b)})}
+const tabs=$("tabs");Object.keys(C).forEach(k=>{const b=document.createElement("button");b.className="tab";b.dataset.k=k;b.style.setProperty("--ac",C[k].ac);
+const s1=document.createElement("b");s1.textContent=C[k].n;const s2=document.createElement("span");s2.textContent=C[k].tab;b.append(s1,s2);
+b.onclick=()=>show(k);tabs.appendChild(b)});
+let tt=null;function note(t){$("st").textContent=t;const e=$("toast");e.textContent=t;e.hidden=false;clearTimeout(tt);tt=setTimeout(()=>{e.hidden=true},3500)}
+function payload(){return{sid,hist,reflection:$("refl").value.slice(0,3000),updatedAt:new Date().toISOString()}}
+function save(){if(!sid)return;try{localStorage.setItem("ir_"+sid,JSON.stringify(payload()))}catch(e){}}
+function load(v){try{const d=JSON.parse(localStorage.getItem("ir_"+v)||"null");if(d&&d.hist){Object.keys(hist).forEach(k=>{hist[k]=Array.isArray(d.hist[k])?d.hist[k].map(m=>({role:m.role,content:String(m.content)})):[]});$("refl").value=d.reflection||"";return true}}catch(e){}return false}
+function ask(text){text=(text||"").trim();if(!text)return;if(!sid&&!startSid()){add("n","먼저 위쪽 학번 칸에 학번을 입력해 주세요.");$("idbar").scrollIntoView({behavior:"smooth",block:"center"});$("sid").focus();return}
+const k=cur;hist[k].push({role:"user",content:text});add("u",text);$("q").value="";const b=add("a","...");
+setTimeout(()=>{const a=reply(k,text);hist[k].push({role:"assistant",content:a});save();if(cur===k){b.textContent=a;log.scrollTop=log.scrollHeight}},450)}
+$("go").onclick=()=>ask($("q").value);
+$("q").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){e.preventDefault();ask($("q").value)}});
+function startSid(){const v=$("sid").value.trim();if(!/^[0-9A-Za-z-]{3,12}$/.test(v)){note("학번은 3~12자의 숫자나 영문으로 입력해 주세요.");return false}
+sid=v;const had=load(v);show(cur);save();note(had?"저장된 기록을 불러왔어요 (학번 "+v+")":"시작! 학번 "+v+" 기록은 이 기기에 자동 저장돼요.");return true}
+$("sidgo").onclick=startSid;
+$("refl").addEventListener("input",save);
+function toText(){let o="학번: "+sid+"\n";Object.keys(C).forEach(k=>{if(!hist[k].length)return;o+="\n[ "+C[k].n+"와(과)의 대화 ]\n";hist[k].forEach(m=>o+=(m.role==="user"?"학생: ":C[k].n+": ")+m.content+"\n")});return o+"\n[ 생각 정리 ]\n"+$("refl").value+"\n"}
+$("dl").onclick=()=>{if(!sid){note("먼저 학번을 입력하고 저장해 주세요.");return}save();const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(payload())],{type:"application/json"}));a.download="산업혁명_"+sid+".json";document.body.appendChild(a);a.click();a.remove();note("파일을 내려받았어요. 이 파일을 선생님께 제출하세요.")};
+$("cp").onclick=async()=>{if(!sid){note("먼저 학번을 입력하고 저장해 주세요.");return}const t=toText();try{await navigator.clipboard.writeText(t);note("복사했어요. 과제 칸에 붙여 넣으세요.")}catch(e){const x=document.createElement("textarea");x.value=t;document.body.appendChild(x);x.select();try{document.execCommand("copy");note("복사했어요. 과제 칸에 붙여 넣으세요.")}catch(_){note("복사하지 못했어요. 파일로 저장해 주세요.")}x.remove()}};
+show("tom");
+</script>
+</body>
+</html>
